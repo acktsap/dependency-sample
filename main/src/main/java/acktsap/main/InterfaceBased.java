@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 import acktsap.api.SomeInterface;
 
-public class Runner {
+public class InterfaceBased {
 	public static class CustomClassLoader extends ClassLoader {
 		private final String classPath;
 
@@ -37,27 +37,21 @@ public class Runner {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// select class dir (1 or 2)
+		// choose class dir (1 or 2)
 		// make sure that all subprojects are build
-		String classDir = "module1/out/production/classes";
-		// String classDir = "module2/out/production/classes";
+		String classDir = "interface-module1/out/production/classes";
+		// String classDir = "interface-module2/out/production/classes";
 
 		CustomClassLoader customClassLoader = new CustomClassLoader(classDir);
 		System.out.printf("main classLoader before: %s%n", Thread.currentThread().getContextClassLoader());
 
-		// Set the custom class loader as the context class loader
 		Thread.currentThread().setContextClassLoader(customClassLoader);
 		System.out.printf("main classLoader after: %s%n", Thread.currentThread().getContextClassLoader());
 
 		// Load SomeClass using the custom class loader
-		// Class<?> clazz = customClassLoader.loadClass("acktsap.classloader.SomeClass");
-		Class<?> clazz = Thread.currentThread().getContextClassLoader().loadClass("acktsap.module.Module");
+		Class<?> clazz = Thread.currentThread().getContextClassLoader().loadClass("acktsap.module.InterfaceBasedModule");
 
-		// Create an instance of SomeClass using reflection
-		Object obj = clazz.getDeclaredConstructor().newInstance();
-
-		// Cast the object to SomeClass and invoke the hello method
-		SomeInterface someInterface = (SomeInterface)obj;
+		SomeInterface someInterface = (SomeInterface)clazz.getDeclaredConstructor().newInstance();
 		someInterface.hell();
 	}
 }

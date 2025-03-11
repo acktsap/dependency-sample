@@ -11,6 +11,9 @@ rootProject.name = "dependency-sample"
 include(
     "main",
     "interface",
-    "module1",
-    "module2",
+    "interface-module1",
+    "interface-module2",
+    "concrete",
+    "concrete-module1",
+    "concrete-module2"
 )
