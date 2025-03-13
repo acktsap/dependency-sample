@@ -1,4 +1,10 @@
-# DependencySample
+# Java Binding Sample
+
+## Requirement
+
+- jdk21 or higher
+
+## Instruction
 
 - Open in Intellij.
 - Set build & running by Intellij.

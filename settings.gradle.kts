@@ -6,7 +6,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "dependency-sample"
+rootProject.name = "java-binding-sample"
 
 include(
     "main",
